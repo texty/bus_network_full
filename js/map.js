@@ -11,7 +11,47 @@ d3.json("data/routesUA.json").then(function(data) {
                         .key(d => d.id)
                         .map(stops);
 
+
+    const store = new Vuex.Store({
+      state: {
+        routes: data,
+        selectedCity: data[100].start.cityCode,
+        redrawMap: false
+      },
+      mutations: {
+        change(state, n) {
+          state.selectedCity = n
+        },
+        redrawMap(state) {
+          state.redrawMap = !state.redrawMap;
+        }
+      },
+      getters: {
+        routesToDisplay: state => {
+          return state.routes.filter(d => d.start.cityCode == state.selectedCity)
+          // return state.selectedCity
+        }
+      },
+    })
+
+
     var map = L.map('map', { zoomControl:false }).setView([49.272021, 31.437523], 6);
+
+  d3.json("data/oblast_geo_simple.json").then(function(oblast) {
+    let oblastBoundaries = L.geoJSON(oblast, {
+      color:"#968787",
+      fill: "#000",
+      weight:1,
+      // stroke-width:1,
+      fillOpacity: 0,
+      opacity: 0.5,
+      bubblingMouseEvents: false
+    }).addTo(map);
+
+    oblastBoundaries.bringToBack();
+
+  });
+
 
     var backgroundRouteColor = "#b7acac";
     var selectedRouteColor = "#EB00FF";
@@ -20,8 +60,8 @@ d3.json("data/routesUA.json").then(function(data) {
     var gl = L.mapboxGL({
         accessToken: 'pk.eyJ1IjoicHRyYmRyIiwiYSI6ImNqZG12dWdtYzBwdzgyeHAweDFueGZrYTYifQ.ZJ2tgs6E94t3wBwFOyRSBQ',
         maxZoom: 19,
-        style: 'style.json',
-        pane: 'tilePane'
+/*         style: 'style.json',
+ */        pane: 'tilePane'
     }).addTo(map);
 
     let allPointsData = [...data.map(d => d.start), ...data.map(d => d.end)];
@@ -37,12 +77,20 @@ d3.json("data/routesUA.json").then(function(data) {
       }
     });
 
+    s = new Set()
+    geojson = geojson.filter(d => {
+      if (!s.has(d.properties.cityCode)) {
+        s.add(d.properties.cityCode);
+        return d
+      }
+    })
+
     var max = d3.max(geojson.map(d => d.properties.freq));
 
     var scale = d3
         .scaleLog()
         .domain([1, max]) // input
-        .range([3, 6]); // output
+        .range([3, 12]); // output
 
     var markers = L.geoJSON(geojson, {
       pointToLayer: function(feature, latlng) {
@@ -50,22 +98,33 @@ d3.json("data/routesUA.json").then(function(data) {
           radius: scale(feature.properties.freq),
           fillColor: "#808080",
           color: "#000",
-          weight: 0,
-          opacity: 1,
+          weight: 1,
+          opacity: 0,
           fillOpacity: 0.5,
-          bubblingMouseEvents: true
+          bubblingMouseEvents: false
         });
       }
     }).addTo(map);
 
-    let selectedRoutes =  data.slice(0, 100);
+    markers.on('click', function(d){
+      // console.log(d.target.properties);
+      var a = d.sourceTarget.feature.properties.cityCode;
+      var res = data.filter(d => d.start.cityCode == a)
+      // console.log(res);
+      store.commit('change', a);
+      store.commit('redrawMap');
+      // overlay.redraw();
+      overlay.redraw({redraw:true, data:store.getters.routesToDisplay});
+    });
 
-    countryOverlay.draw(map, data, backgroundRouteColor, 0.5);
-    countryOverlay.draw(map, selectedRoutes, selectedRouteColor, 1);
 
+    // let selectedRoutes =  data.slice(0, 100);
+    var background = countryOverlay.draw(map, store.state.routes, backgroundRouteColor, 0.5);
+    var overlay =  countryOverlay.draw(map, store.getters.routesToDisplay, selectedRouteColor, 1);
 
+    // background.draw(map, data, backgroundRouteColor, 0.5);
+    // overlay.draw(map, store, selectedRouteColor, 1);
 
-    window.nestedStops = nestedStops;
 
     var timetable = Vue.component('table-route-timetable', {
       props: {
@@ -206,17 +265,33 @@ d3.json("data/routesUA.json").then(function(data) {
 
   new Vue({ 
     el: '#app' ,
+    store,
     data: {
-      selectedStop: selectedRoutes,
+      // selectedStop: store.getters,
       selected: null,
       iD: 'UA300'
     },
     computed: {
       timetable: function(){
         return nestedStops.get(this.iD)
+      },
+      selectedStop: function() {
+        return store.getters.routesToDisplay
       }
     },
+    mounted() {
+      console.log(store.getters.routesToDisplay);
+    },
+    // watch: {
+    //   selectedStop: function(val) {
+    //     overlay = overlay.draw(map, val, selectedRouteColor, 1);
+    //   }
+    // }
   })
+
+
 
   })
 });
+
+

@@ -1,0 +1,34 @@
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #f1f1f1;
+}
+
+body div#main {
+  height: 100vh;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 5fr 2fr;
+  grid-template-columns: 5fr 2fr;
+}
+
+body div#main div#map {
+  height: 100vh;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
+  background-color: #f1f1f1;
+}
+
+body div#main div#app {
+  position: -webkit-sticky;
+  position: sticky;
+  overflow: auto;
+}
+/*# sourceMappingURL=main.css.map */
