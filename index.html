@@ -26,7 +26,8 @@
           <table>
             <button @click="changeToOblast()">Обласні</button>
             <button @click="changeToInternational()">Міжнародні</button>
-            <h3>{{ "Тут буде назва міста " +  selectedCityName }}</h3>
+            <p> {{ "Вибране місто:" }} </p>
+            <h3>{{ selectedCityName }}</h3>
             <table-route v-for="(name, index) in selectedStop" 
               v-bind:key="index"
               :selected.sync="selected"
