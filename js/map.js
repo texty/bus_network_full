@@ -8,6 +8,10 @@ Promise.all([
 ]).then(function([o, e, data, stops, international_routes, international_routes_stops]) {
   Vue.config.devtools = true;
 
+
+  var backgroundRouteColor = "#b7acac";
+  var selectedRouteColor = "#EB00FF";
+
 var map = L.map('map', { zoomControl:false }).setView([49.272021, 31.437523], 6);
 map.scrollWheelZoom.disable()
 map.addControl(L.control.zoom({ position: 'topleft' }));
@@ -145,10 +149,44 @@ markers.on('click', function(d){
   overlay.redraw({redraw:true, data:store.getters.routesToDisplay});
 });
 
+markers.on('mouseover', d => {
+  d.layer.setStyle({fillColor: selectedRouteColor});
+  popup = L.popup()
+      .setLatLng(d.latlng)
+      .setContent(d.layer.feature.properties.cityName)
+      .openOn(map);
+
+});
+
+
+markers.on('mouseout', d => {
+  d.layer.setStyle({fillColor: "#929292"});
+
+  map.closePopup();
+
+});
+
 markersInt.on('click', function(d){
   var a = d.sourceTarget.feature.properties.cityCode;
   store.commit('change', a);
   overlay.redraw({redraw:true, data:store.getters.routesToDisplay});
+});
+
+markersInt.on('mouseover', d => {
+  d.layer.setStyle({fillColor: selectedRouteColor});
+  popup = L.popup()
+      .setLatLng(d.latlng)
+      .setContent(d.layer.feature.properties.cityName)
+      .openOn(map);
+
+});
+
+
+markersInt.on('mouseout', d => {
+  d.layer.setStyle({fillColor: "#929292"});
+
+  map.closePopup();
+
 });
 
   const store = new Vuex.Store({
@@ -298,8 +336,6 @@ map.addControl(L.control.zoom({ position: 'topleft' })); */
 
     europe.bringToBack();
 
-  var backgroundRouteColor = "#b7acac";
-  var selectedRouteColor = "#EB00FF";
 
 
 var gl = L.mapboxGL({
@@ -357,7 +393,7 @@ var gl = L.mapboxGL({
   template: 
   `
   <div>
-    <h3 @click="headerClick"> Розклад </h3>
+    <button class="schedule" @click="headerClick"> Розклад </button>
     <div v-if="show">
       <button @click="direction = !direction">
         {{ direction ? "Прямий" : "Зворотній" }}
@@ -367,7 +403,7 @@ var gl = L.mapboxGL({
       >        
         {{
           direction 
-          ? item.stop_name + " | " 
+          ? item.stop_name + "  " 
           + item.arrival_direct 
           : item.stop_name +  " | " 
           + item.arrival_return
