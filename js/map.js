@@ -399,7 +399,8 @@ var gl = L.mapboxGL({
         {{ direction ? "Прямий" : "Зворотній" }}
       </button>
       <p v-for="(item, index) in routeListInt"
-          v-bind:key="index"
+          :key="index"
+          class="route_row"
       >
         <span class="stop_name">
           {{ item.stop_name }}

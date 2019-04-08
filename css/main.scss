@@ -187,6 +187,12 @@ button.schedule {
 }
 
 button.direction {
+  border: 1px solid $pink;
+  border-radius: 0;
+  background-color: white;
+  padding: 0.25em 0.75em;
+  margin: 1em 0 1.5em 0;
+
   &:before {
     content: "↻";
     color: $pink;
@@ -195,8 +201,23 @@ button.direction {
 
   &.straight {
     &:before {
-      transform: rotate(180deg);
+      transform: rotate(90deg);
     }
   }
 }
 
+.route_row {
+  display: grid;
+  grid-template-columns: 1fr 5em;
+  margin: 0 0 1.5em 0;
+  font-size: 0.85em;
+  border-bottom: 1px solid darken($bgcol, 20%);
+  span:first-of-type {
+    margin: 0 1.5em 0 0; 
+  }
+
+  span:last-of-type {
+    color: $pink;
+    font-weight: 800;
+  }
+}

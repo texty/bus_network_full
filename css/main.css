@@ -158,13 +158,35 @@ button.schedule:hover, button.schedule.active {
   background-color: #eb00ff;
 }
 
+button.direction {
+  border: 1px solid #eb00ff;
+  border-radius: 0;
+  background-color: white;
+  padding: 0.25em 0.75em;
+  margin: 1em 0 1.5em 0;
+}
 button.direction:before {
   content: "↻";
   color: #eb00ff;
   transition: transform 0.5s;
 }
 button.direction.straight:before {
-  transform: rotate(180deg);
+  transform: rotate(90deg);
+}
+
+.route_row {
+  display: grid;
+  grid-template-columns: 1fr 5em;
+  margin: 0 0 1.5em 0;
+  font-size: 0.85em;
+  border-bottom: 1px solid #c7c7c7;
+}
+.route_row span:first-of-type {
+  margin: 0 1.5em 0 0;
+}
+.route_row span:last-of-type {
+  color: #eb00ff;
+  font-weight: 800;
 }
 
 /*# sourceMappingURL=main.css.map */
