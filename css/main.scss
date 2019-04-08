@@ -126,14 +126,17 @@ div#nav {
       margin: 0.5em 0 0 0;
     }
   }
+}
 
-  .city_route > h3 {
+.city_route {
+  margin: 0.25em 0 1.25em 0;
+
+  h3 {
     font-weight: normal;
     color: lighten($fontcol, 15%);
     font-size: 1rem;
     padding: 0.25em;
     cursor: pointer;
-    border-radius: 0.25em;
     transition: background-color 0.25s, padding 0.5s, color 0.25s;
 
     &:hover {
@@ -141,29 +144,28 @@ div#nav {
     }
 
     &.active {
-      background-color: $pink;
-      color: white;
-      padding-left: 1.5em;
-      margin-bottom: 2.5em;
+      
     }
   }
 
-  div#app {
-    .city_route {
-      margin: 0.25em 0 1.25em 0;
+  &.active {
+    background-color: darken($bgcol, 7%);
+    padding-bottom: 2.5em;
 
-      &.active {
-        background-color: darken($bgcol, 7%);
-      }
+    h3 {
+      background-color: $pink;
+      color: white;
+      padding-left: 1.5em;
     }
-    .route_details {
-      margin: 0 0 1.5em 1.5em;
+  }
+}
 
-      p {
-        font-size: 0.85em;
-        color: lighten($fontcol, 25%);
-        margin: 0 0 1.25em 0; 
-      }
-    }
+.route_details {
+  margin: 0 0 1.5em 1.5em;
+
+  p {
+    font-size: 0.85em;
+    color: lighten($fontcol, 25%);
+    margin: 0 0 1.25em 0; 
   }
 }
