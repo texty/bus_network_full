@@ -27,6 +27,11 @@ let nestedStops = d3.nest()
   .key(d => d.id)
   .map(stops); 
 
+/* let nestedStopNames = d3.nest()
+  .key(d => d.stop_name)
+  .rollup(leaves => leaves[0].stop_code)
+  .entries(stops); 
+ */
       
 var data_int = international_routes.filter(function(d) {
   return d.start || d.end
@@ -34,7 +39,16 @@ var data_int = international_routes.filter(function(d) {
 
 let nestedStops_int = d3.nest()
   .key(d => d.id)
+  /* .rollup(leaves => leaves[0].stop_code) */
   .map(international_routes_stops);
+
+/* let nestedStopNamesInt = d3.nest()
+  .key(d => d.stop_name)
+  .rollup(leaves => leaves[0].stop_code)
+  .entries(international_routes_stops); */
+
+  console.log('oblast', data);
+  console.log('int', data_int);
 
 
 let allPointsData = [
@@ -137,12 +151,11 @@ markersInt.on('click', function(d){
   overlay.redraw({redraw:true, data:store.getters.routesToDisplay});
 });
 
-
-
   const store = new Vuex.Store({
     state: {
       routes: data,
       nestedStops: nestedStops,
+      /* nestedStopNames: nestedStopNames, */
       selectedCity: '4610100000',
       redrawMap: false,
       screen: 'oblast'
@@ -157,8 +170,14 @@ markersInt.on('click', function(d){
       changeDataInt(state) {
         store.state.routes = data_int,
         store.state.nestedStops = nestedStops_int;
+        /* store.state.nestedStopNames = nestedStopNamesInt; */
         store.state.selectedCity = '4610100000'
         store.state.screen = 'internatation';
+
+        states.clear();
+        states.local = store.getters.nestedStopNames.map(d => d.key.trim());
+        states.initialize(true);
+
         background.redraw({redraw:true, data:store.state.routes});
         overlay.redraw({redraw:true, data:store.getters.routesToDisplay});
 
@@ -172,10 +191,15 @@ markersInt.on('click', function(d){
       changeDataObl(state) {
         store.state.routes = data, 
         store.state.nestedStops = nestedStops
+        /* store.state.nestedStopNames = nestedStopNames; */
         store.state.selectedCity = '4610100000'
         store.state.screen = 'oblast'
         background.redraw({redraw:true, data:store.state.routes});
         overlay.redraw({redraw:true, data:store.getters.routesToDisplay});
+
+        states.clear();
+        states.local = store.getters.nestedStopNames.map(d => d.key.trim());
+        states.initialize(true);
 
         markersInt.remove();
         europe.remove();
@@ -193,6 +217,16 @@ markersInt.on('click', function(d){
       },
       selectedCityName: state => {
         return state.selectedCity
+      },
+      nestedStopNames: function(state){
+        var stops = [];
+        
+        state.routes.forEach(function(r){
+          stops.push({key: r.start.cityName, value: r.start.cityCode})
+          stops.push({key: r.end.cityName, value: r.end.cityCode})
+        })
+
+        return stops     
       }
     },
     actions: {
@@ -204,6 +238,33 @@ markersInt.on('click', function(d){
       }
     }
   })
+
+
+var states = new Bloodhound({
+  datumTokenizer: Bloodhound.tokenizers.whitespace,
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  // `states` is an array of state names defined in "The Basics"
+  local: store.getters.nestedStopNames.map(d => d.key.trim())
+});
+
+
+$('#bloodhound .typeahead').typeahead({
+      hint: true,
+      highlight: true,
+      minLength: 1
+  },
+  {
+      name: 'states',
+      source: states
+  });
+
+  $('.typeahead').on('typeahead:selected', function(evt, item) {
+    console.log(nestedStopNames);
+    /* store.commit('change', nestedStopNames.filter(d => d.key == item)[0].value);
+    overlay.redraw({redraw:true, data:store.getters.routesToDisplay}); */
+  
+  })
+
 
 
 /* var map = L.map('map', { zoomControl:false }).setView([49.272021, 31.437523], 6);
@@ -403,11 +464,9 @@ new Vue({
   },
   methods: {
     changeToInternational: function() {
-      /* store.actions.changeData() */
       store.commit('changeDataInt');
     },
     changeToOblast: function() {
-      /* store.actions.changeData() */
       store.commit('changeDataObl');
     },
   },
