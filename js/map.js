@@ -3,7 +3,7 @@ Promise.all([
   d3.json("data/europe.json"),
   d3.json("data/routesUA.json"),
   d3.json("data/stopsUA.json"),
-  d3.json("data/international_routes.json"),
+  d3.json("data/output.json"),
   d3.json("data/international_routes_stops.json"),
 ]).then(function([o, e, data, stops, international_routes, international_routes_stops]) {
   Vue.config.devtools = true;
@@ -11,12 +11,13 @@ Promise.all([
 var map = L.map('map', { zoomControl:false }).setView([49.272021, 31.437523], 6);
 map.scrollWheelZoom.disable()
 map.addControl(L.control.zoom({ position: 'topleft' }));
-
+/* 
 var gl = L.mapboxGL({
   accessToken: 'pk.eyJ1IjoicHRyYmRyIiwiYSI6ImNqZG12dWdtYzBwdzgyeHAweDFueGZrYTYifQ.ZJ2tgs6E94t3wBwFOyRSBQ',
-  maxZoom: 19,
+  maxZoom: 6,
+  minZoom:5,
   pane: 'tilePane'
-}).addTo(map);
+}).addTo(map); */
 
 data = data.filter(function(d) {
    return d.start || d.end
@@ -126,14 +127,12 @@ var markersInt = L.geoJSON(geojsonInt, {
 
 markers.on('click', function(d){
   var a = d.sourceTarget.feature.properties.cityCode;
-  var res = data.filter(d => d.start.cityCode == a)
   store.commit('change', a);
   overlay.redraw({redraw:true, data:store.getters.routesToDisplay});
 });
 
 markersInt.on('click', function(d){
   var a = d.sourceTarget.feature.properties.cityCode;
-  var res = data.filter(d => d.end.cityCode == a)
   store.commit('change', a);
   overlay.redraw({redraw:true, data:store.getters.routesToDisplay});
 });
@@ -188,7 +187,12 @@ markersInt.on('click', function(d){
     },
     getters: {
       routesToDisplay: state => {
-        return state.routes.filter(d => d.start.cityCode == state.selectedCity || d.end.cityCode == state.selectedCity)
+        return state.routes.filter(d => {
+          return d.start.cityCode == state.selectedCity || d.end.cityCode == state.selectedCity
+        })
+      },
+      selectedCityName: state => {
+        return state.selectedCity
       }
     },
     actions: {
@@ -235,66 +239,14 @@ map.addControl(L.control.zoom({ position: 'topleft' })); */
 
 var gl = L.mapboxGL({
     accessToken: 'pk.eyJ1IjoicHRyYmRyIiwiYSI6ImNqZG12dWdtYzBwdzgyeHAweDFueGZrYTYifQ.ZJ2tgs6E94t3wBwFOyRSBQ',
-    maxZoom: 19,
+    maxZoom: 6,
+    minZoom:5,
     pane: 'tilePane'
 }).addTo(map);
 
-  /* let allPointsData = [...store.state.routes.map(d => d.start), ...store.state.routes.map(d => d.end)];
-
-  var geojson = allPointsData.map(function (d) {
-    return {
-        type: "Feature",
-        properties: d,
-        geometry: {
-            type: "Point",
-            coordinates: [+d.coords[1], +d.coords[0]]
-        }
-    }
-  });
-
-  s = new Set()
-  geojson = geojson.filter(d => {
-    if (!s.has(d.properties.cityCode)) {
-      s.add(d.properties.cityCode);
-      return d
-    }
-  })
-
-  var max = d3.max(geojson.map(d => d.properties.freq));
-
-  var scale = d3
-      .scaleLog()
-      .domain([1, max]) // input
-      .range([3, 12]); // output
-
-  var markers = L.geoJSON(geojson, {
-    pointToLayer: function(feature, latlng) {
-      return L.circleMarker(latlng, {
-        radius: scale(feature.properties.freq),
-        fillColor: "#808080",
-        color: "#000",
-        weight: 1,
-        opacity: 0,
-        fillOpacity: 0.5,
-        bubblingMouseEvents: false
-      });
-    }
-  }).addTo(map);
-
-  markers.on('click', function(d){
-    var a = d.sourceTarget.feature.properties.cityCode;
-    var res = data.filter(d => d.start.cityCode == a)
-    store.commit('change', a);
-    overlay.redraw({redraw:true, data:store.getters.routesToDisplay});
-  }); */
-
-
-  // let selectedRoutes =  data.slice(0, 100);
   var background = countryOverlay.draw(map, store.state.routes, backgroundRouteColor, 0.5);
   var overlay =  countryOverlay.draw(map, store.getters.routesToDisplay, selectedRouteColor, 1);
 
-  // background.draw(map, data, backgroundRouteColor, 0.5);
-  // overlay.draw(map, store, selectedRouteColor, 1);
 
 
   var timetable = Vue.component('table-route-timetable', {
@@ -310,13 +262,8 @@ var gl = L.mapboxGL({
     },
     methods: {
       headerClick: function() {
-        // this.$emit('openedRouteDetails');
         this.show = !this.show
-        // this.setRouteID(this.$props.id);
       },
-      // close: function() {
-      //   this.show = hide;
-      // }     
     },
     computed: {
       selectedRoute: function(){
@@ -427,6 +374,7 @@ var gl = L.mapboxGL({
     <div>
     <button @click="changeToInt"></button>
     <button></button>
+    <h3></h3>
       <table-route v-for="(name, index) in selectedStop" 
       v-bind:key="index"
       :selected.sync="selected"
@@ -450,7 +398,6 @@ new Vue({
   el: '#app' ,
   store,
   data: {
-    // selectedStop: store.getters,
     selected: null,
     iD: 'UA300'
   },
@@ -470,10 +417,15 @@ new Vue({
     },
     selectedStop: function() {
       return store.getters.routesToDisplay
+    },
+    selectedCityName: function() {
+      return store.getters.selectedCityName
+    },
+    screen: function() {
+      return store.state.screen
     }
   },
   mounted() {
-    console.log(store.getters.routesToDisplay);
   },
   // watch: {
   //   selectedStop: function(val) {

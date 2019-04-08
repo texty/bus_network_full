@@ -16,52 +16,34 @@
   <body>
     <div id="main">
         <div id="map"></div>
-      <!--   <div id="bloodhound">
-            <input class="typeahead" type="text" placeholder="Назва міста">
-        </div> -->
-        <div id="app">
-          <table>
-              <button @click="changeToOblast()">Обласні</button>
-              <button @click="changeToInternational()">Міжнародні</button>
-              <table-route v-for="(name, index) in selectedStop" 
-                v-bind:key="index"
-                :selected.sync="selected"
-                :idx="index"
-                :show="selected == index"
-                :name="name.end.cityName" 
-                :company_name="name.company_name"
-                :license_data="name.license_terms"
-                :bus_age="name.bus_age"
-                :route_regularity="name.march_route_regularity"
-                :bus_comfort_level="name.bus_comfort_level"
-                :id="name.id"
-              >
-              </table-route> 
-          </table> 
+        <div id="nav">
+            <div id="bloodhound">
+                <input class="typeahead" type="text" placeholder="Назва міста">
+            </div>
+            <div id="app">
+              <table>
+                  <button @click="changeToOblast()">Обласні</button>
+                  <button @click="changeToInternational()">Міжнародні</button>
+                  <h3>{{ "Тут буде назва міста " +  selectedCityName }}</h3>
+                  <table-route v-for="(name, index) in selectedStop" 
+                    v-bind:key="index"
+                    :selected.sync="selected"
+                    :idx="index"
+                    :show="selected == index"
+                    :name="name.march_route_name" 
+                    :company_name="name.company_name"
+                    :license_data="name.license_terms"
+                    :bus_age="name.bus_age"
+                    :route_regularity="name.march_route_regularity"
+                    :bus_comfort_level="name.bus_comfort_level"
+                    :id="name.id"
+                  >
+                  </table-route> 
+              </table> 
+            </div>
         </div>
     </div>
 
-<!--     <div id="main-int">
-      <div id="map-int"></div>
-      <div id="app-int">
-        <table>
-            <table-route v-for="(name, index) in selectedStop" 
-              v-bind:key="index"
-              :selected.sync="selected"
-              :idx="index"
-              :show="selected == index"
-              :name="name.end.cityName" 
-              :company_name="name.company_name"
-              :license_data="name.license_terms"
-              :bus_age="name.bus_age"
-              :route_regularity="name.march_route_regularity"
-              :bus_comfort_level="name.bus_comfort_level"
-              :id="name.id"
-            >
-            </table-route> 
-        </table> 
-      </div>
-  </div> -->
     <script src="libs/leaflet.js "></script>
     <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.35.1/mapbox-gl.js"></script>
     <script src="libs/leaflet-mapbox-gl.js"></script>
@@ -73,8 +55,8 @@
     <!-- <script src="libs/country.js"></script> -->
     
     
-    <script src="node_modules/d3/dist/d3.js"></script>
-    <script src="node_modules/vue/dist/vue.min.js"></script>
+    <script src="libs/d3.js"></script>
+    <script src="libs/vue.min.js"></script>
     <script src="libs/vuex.min.js"></script>
     <script src="libs/jquery-3.3.1.js"></script>
     <script src="libs/typeahead.js"></script>
