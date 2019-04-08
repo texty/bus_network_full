@@ -26,8 +26,8 @@
             <div id="bloodhound">
               <input class="typeahead" type="text" placeholder="Назва міста">
             </div>
-            <button @click="changeToOblast()">Обласні</button>
-            <button @click="changeToInternational()">Міжнародні</button>
+            <button @click="changeToOblast()" :class="{active:true}">Обласні</button>
+            <button @click="changeToInternational()" :class="{active:false}">Міжнародні</button>
           </nav>
           <table>
 <!--             <button @click="changeToOblast()">Обласні</button>
