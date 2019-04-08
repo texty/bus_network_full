@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!-- <link rel="icon" href="%= BASE_URL %>favicon.icon"> -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
     integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
@@ -16,17 +16,22 @@
   <body>
     <div id="main">
       <figure>
-        <div id="map"></div>
+        <div id="map_cont">
+          <div id="map"></div>
+        </div>
       </figure>
       <div id="nav">
-        <div id="bloodhound">
+        <nav id="search_buttons">
+          <div id="bloodhound">
             <input class="typeahead" type="text" placeholder="Назва міста">
-        </div>
+          </div>
+          <button @click="changeToOblast()">Обласні</button>
+          <button @click="changeToInternational()">Міжнародні</button>
+        </nav>
+
         <div id="app">
           <table>
-            <button @click="changeToOblast()">Обласні</button>
-            <button @click="changeToInternational()">Міжнародні</button>
-            <h3>{{ "Тут буде назва міста " +  selectedCityName }}</h3>
+            <h3 id="selected_city">{{ "Тут буде назва міста " +  selectedCityName }}</h3>
             <table-route v-for="(name, index) in selectedStop" 
               v-bind:key="index"
               :selected.sync="selected"

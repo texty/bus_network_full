@@ -22,5 +22,10 @@
   "devDependencies": {
     "node-sass": "^4.11.0",
     "nodemon": "^1.18.10"
+  },
+
+  "nodemonConfig": {
+    "ignore": ["data/*", "js/*", "data/*", "libs/*", "node_modules/*"],
+    "delay": "500"
   }
 }

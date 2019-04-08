@@ -3,13 +3,14 @@ $bgcol: #f1f1f1;
 $pink: #eb00ff;
 
 $mobile: 'screen and (max-width: 800px) ';
+$medium: 'screen and (min-width: 801px) ';
 
 
 body {
   padding: 0;
   margin: 0;
   background-color: $bgcol;
-  font-family: sans-serif;
+  font-family: sans-serif;;
   color: $fontcol;
 
   * {
@@ -21,30 +22,115 @@ body {
 }
 
 div#main {
-  height: 100vh;
   display: grid;
   grid-template-columns: 5fr 2fr;
+  margin: 0 1em;
 
   @media #{$mobile} {
-    grid-template-columns: 1fr;
-    grid-template-rows: 5fr 2fr;
+    display: block;
   }
 }
 
-div#map {
-  height: 100vh;
-  position: sticky;
-  top: 0;
-  display: block;
-  background-color: $bgcol;
+figure {
+  @media #{$mobile} {
+    height: 45vh;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+}
+
+#map_cont {
+  width: 100%;
+  height: 100%;
+  @media #{$medium} {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+  }
+
+  div#map {
+    width: 100%;
+    height: 100%;
+    background-color: $bgcol;
+  }
+}
+
+#search_buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  @media #{$medium} {
+    #bloodhound {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media #{$mobile} {
+    grid-template-columns: auto auto auto 1fr;
+
+    button {
+      min-width: 8em;
+    }
+  }
+
+  button {
+    display: inline-block;
+    border: none;
+    border-radius: 0;
+    background-color: darken($bgcol, 15%);
+    padding: 0.25em;
+    color: white;
+
+    &:last-of-type {
+      margin-left: 0.5em;
+    }
+
+    &:first-of-type {
+      margin-right: 0.5em;
+    }
+  }
+
+  #bloodhound {
+    input {
+      border-radius: 0;
+      border: none;
+      border: 1px solid lighten($fontcol, 33%);
+      padding: 0.25em  0.5em;
+      margin: 0.5em 0 1em 0;
+    }
+  }
 }
 
 div#nav {
-  display: grid;
-  grid-template-columns: 1fr;
-
-  div#app {
-    position: sticky;
-    overflow: auto;
+  #selected_city {
+    text-transform: uppercase;
+    color: $fontcol;
+    margin: 0.25em 0 1.75em 0;
+    border-bottom: 1px solid $pink;
+    cursor: auto;
   }
+
+  h3 {
+    font-weight: normal;
+    color: lighten($fontcol, 15%);
+    font-size: 1rem;
+    margin: 0.25em 0 1.25em 0;
+    padding: 0.25em;
+    cursor: pointer;
+    transition: color 0.25s;
+
+    &:hover {
+      color: $pink;
+    }
+
+    &:.active {
+      background-color: $pink;
+    }
+  }
+
+  // div#app {
+  //   position: sticky;
+  //   overflow: auto;
+  // }
 }
