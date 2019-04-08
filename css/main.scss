@@ -64,8 +64,9 @@ figure {
     border: none;
     border-radius: 0;
     background-color: darken($bgcol, 15%);
-    padding: 0.25em;
+    padding: 0.25em 0.75em;
     color: white;
+    transition: background-color 0.5s;
 
     &:last-of-type {
       margin-left: 0.5em;
@@ -74,35 +75,62 @@ figure {
     &:first-of-type {
       margin-right: 0.5em;
     }
+
+    &.active {
+      background-color: darken($bgcol, 33%);
+    }
   }
 }
 
 #bloodhound {
+  background-color: $bgcol;
+  margin: 0.5em 0 1em 0;
+
   input {
     border-radius: 0;
     border: none;
     border: 1px solid lighten($fontcol, 33%);
     padding: 0.25em  0.5em;
-    margin: 0.5em 0 1em 0;
+  }
+
+  .tt-menu {
+    background-color: lighten($bgcol, 50%);
+    width: 100%;
+  }
+
+  .tt-suggestion {
+    font-size: 0.85em;
+    padding: 0.25em 0.5em;
+    border: 1px solid darken($bgcol, 10%);
+    transition: background-color 0.25s;
+
+    &:hover {
+      background-color: rgba($pink, 0.33);
+    }
   }
 }
 
 div#nav {
   #selected_city {
-    text-transform: uppercase;
-    font-weight: normal;
-    font-size: 1rem;
-    color: $fontcol;
-    margin: 0.25em 0 1.75em 0;
-    border-bottom: 1px solid $pink;
-    cursor: auto;
+    margin: 1em 0 2em 0;
+    color: lighten($fontcol, 33%);
+    font-size: 0.85em;
+
+    span {
+      display: block;
+      text-transform: uppercase;
+      font-weight: normal;
+      font-size: 1rem;
+      color: $fontcol;
+      text-decoration: underline $pink;
+      margin: 0.5em 0 0 0;
+    }
   }
 
   .city_route > h3 {
     font-weight: normal;
     color: lighten($fontcol, 15%);
     font-size: 1rem;
-    margin: 0.25em 0 1.25em 0;
     padding: 0.25em;
     cursor: pointer;
     border-radius: 0.25em;
@@ -116,16 +144,25 @@ div#nav {
       background-color: $pink;
       color: white;
       padding-left: 1.5em;
+      margin-bottom: 2.5em;
     }
   }
 
   div#app {
+    .city_route {
+      margin: 0.25em 0 1.25em 0;
+
+      &.active {
+        background-color: darken($bgcol, 7%);
+      }
+    }
     .route_details {
       margin: 0 0 1.5em 1.5em;
 
       p {
         font-size: 0.85em;
         color: lighten($fontcol, 25%);
+        margin: 0 0 1.25em 0; 
       }
     }
   }

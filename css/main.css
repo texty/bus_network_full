@@ -57,8 +57,9 @@ div#main {
   border: none;
   border-radius: 0;
   background-color: #cbcbcb;
-  padding: 0.25em;
+  padding: 0.25em 0.75em;
   color: white;
+  transition: background-color 0.5s;
 }
 #search_buttons button:last-of-type {
   margin-left: 0.5em;
@@ -66,28 +67,52 @@ div#main {
 #search_buttons button:first-of-type {
   margin-right: 0.5em;
 }
-#search_buttons #bloodhound input {
+#search_buttons button.active {
+  background-color: #9d9d9d;
+}
+
+#bloodhound {
+  background-color: #f1f1f1;
+  margin: 0.5em 0 1em 0;
+}
+#bloodhound input {
   border-radius: 0;
   border: none;
   border: 1px solid #656565;
   padding: 0.25em 0.5em;
-  margin: 0.5em 0 1em 0;
+}
+#bloodhound .tt-menu {
+  background-color: white;
+  width: 100%;
+}
+#bloodhound .tt-suggestion {
+  font-size: 0.85em;
+  padding: 0.25em 0.5em;
+  border: 1px solid #d8d8d8;
+  transition: background-color 0.25s;
+}
+#bloodhound .tt-suggestion:hover {
+  background-color: rgba(235, 0, 255, 0.33);
 }
 
 div#nav #selected_city {
+  margin: 1em 0 2em 0;
+  color: #656565;
+  font-size: 0.85em;
+}
+div#nav #selected_city span {
+  display: block;
   text-transform: uppercase;
   font-weight: normal;
   font-size: 1rem;
   color: #111111;
-  margin: 0.25em 0 1.75em 0;
-  border-bottom: 1px solid #eb00ff;
-  cursor: auto;
+  text-decoration: underline #eb00ff;
+  margin: 0.5em 0 0 0;
 }
 div#nav .city_route > h3 {
   font-weight: normal;
   color: #373737;
   font-size: 1rem;
-  margin: 0.25em 0 1.25em 0;
   padding: 0.25em;
   cursor: pointer;
   border-radius: 0.25em;
@@ -100,6 +125,13 @@ div#nav .city_route > h3.active {
   background-color: #eb00ff;
   color: white;
   padding-left: 1.5em;
+  margin-bottom: 2.5em;
+}
+div#nav div#app .city_route {
+  margin: 0.25em 0 1.25em 0;
+}
+div#nav div#app .city_route.active {
+  background-color: #dfdfdf;
 }
 div#nav div#app .route_details {
   margin: 0 0 1.5em 1.5em;
@@ -107,6 +139,7 @@ div#nav div#app .route_details {
 div#nav div#app .route_details p {
   font-size: 0.85em;
   color: #515151;
+  margin: 0 0 1.25em 0;
 }
 
 /*# sourceMappingURL=main.css.map */
