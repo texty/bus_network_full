@@ -28,6 +28,12 @@
           <nav id="search_buttons">
             <button @click="changeToOblast()">Обласні</button>
             <button @click="changeToInternational()">Міжнародні</button>
+        <nav id="search_buttons">
+            <div id="bloodhound">
+              <input class="typeahead" type="text" placeholder="Назва міста">
+            </div>
+            <button @click="changeToOblast()" :class="{active:true}">Обласні</button>
+            <button @click="changeToInternational()" :class="{active:false}">Міжнародні</button>
           </nav>
           <table>
             <h3 id="selected_city">{{ "Тут буде назва міста " +  selectedCityName }}</h3>
