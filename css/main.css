@@ -31,4 +31,32 @@ body div#main div#app {
   position: sticky;
   overflow: auto;
 }
+
+body div#main-int {
+  height: 100vh;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 5fr 2fr;
+  grid-template-columns: 5fr 2fr;
+}
+
+body div#main-int div#map-int {
+  height: 100vh;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
+  background-color: #f1f1f1;
+}
+
+body div#main-int div#app-int {
+  position: -webkit-sticky;
+  position: sticky;
+  overflow: auto;
+}
 /*# sourceMappingURL=main.css.map */
