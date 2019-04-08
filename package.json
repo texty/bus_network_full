@@ -1,0 +1,26 @@
+{
+  "name": "bus_network_full",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx node-sass --include-path scss css/main.scss css/main.css",
+    "watch": "nodemon -e scss -x \"npm run build-css\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/texty/bus_network_full.git"
+  },
+  "author": "TEXTY.org.ua",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/texty/bus_network_full/issues"
+  },
+  "homepage": "https://github.com/texty/bus_network_full#readme",
+  
+  "devDependencies": {
+    "node-sass": "^4.11.0",
+    "nodemon": "^1.18.10"
+  }
+}
