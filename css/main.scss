@@ -105,13 +105,15 @@ figure {
 div#nav {
   #selected_city {
     text-transform: uppercase;
+    font-weight: normal;
+    font-size: 1rem;
     color: $fontcol;
     margin: 0.25em 0 1.75em 0;
     border-bottom: 1px solid $pink;
     cursor: auto;
   }
 
-  h3 {
+  .city_route > h3 {
     font-weight: normal;
     color: lighten($fontcol, 15%);
     font-size: 1rem;
@@ -133,12 +135,12 @@ div#nav {
   }
 
   div#app {
-    div > div {
+    .route_details {
       margin: 0 0 1.5em 1.5em;
 
       p {
         font-size: 0.85em;
-        color: 
+        color: lighten($fontcol, 25%);
       }
     }
   }

@@ -185,7 +185,7 @@ markersInt.on('click', function(d){
         oblastBoundaries.remove();
         europe.addTo(map);
         markersInt.addTo(map);
-        map.setView([49.272021, 31.437523], 5)
+        map.setView([49.842602, 24.027704], 5)
 
       }, 
       changeDataObl(state) {
@@ -260,6 +260,7 @@ $('#bloodhound .typeahead').typeahead({
   });
 
   $('.typeahead').on('typeahead:selected', function(evt, item) {
+    $(this).val("");
 
     var selected = store.getters.nestedStopNames.filter(d => d.key == item)[0].value
     console.log(selected);
@@ -405,12 +406,12 @@ var gl = L.mapboxGL({
     },
     template: 
     `
-    <div>
+    <div class="city_route">
       <h3 @click="$emit('update:selected', idx)"
         :class="{active: show}">
         {{ name }}
       </h3>
-      <div v-if="show">
+      <div v-if="show" class="route_details">
       <p>Перевізник: {{  company_name != null ?  company_name : "немає даних"}} </p>
       <p>Тривалість ліцензії: {{  license_data != null ?  license_data : "немає даних" }} </p>
       <p>Найстарший автобус на маршруті: {{ bus_age != null ?  bus_age : "немає даних" }} </p>
