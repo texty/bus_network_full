@@ -415,17 +415,20 @@ var gl = L.mapboxGL({
 
 
   var tableRoute = Vue.component('table-route', {
-    props: {
-      idx: Number,
-      show: Boolean,
-      id: String,
-      name: String,
-      company_name: String,
-      license_data: String,
-      bus_age: String,
-      route_regularity: String,
-      bus_comfort_level: String,
-    },
+      props: {
+        idx: Number,
+        show: Boolean,
+        id: String,
+        name: String,
+        company_name: String,
+        license_data: String,
+        bus_age: String,
+        route_regularity: String,
+        bus_comfort_level: String,
+        destionation_country_name: String,
+        border_crossing: String
+
+      },
     data: function () {
       return {
         show: true,
@@ -446,14 +449,15 @@ var gl = L.mapboxGL({
         {{ name }}
       </h3>
       <div v-if="show" class="route_details">
-      <p>Перевізник: {{  company_name != null ?  company_name : "немає даних"}} </p>
+      <p>{{  company_name != null ?  "Перевізник: " + company_name : ""}} </p>
       <p>Тривалість ліцензії: {{  license_data != null ?  license_data : "немає даних" }} </p>
-      <p>Найстарший автобус на маршруті: {{ bus_age != null ?  bus_age : "немає даних" }} </p>
-      <p>Клас комфортності: {{  bus_comfort_level != null ?  bus_comfort_level : "немає даних"  }} </p>
-      <p>Частота: {{ route_regularity != null ?  route_regularity : "немає даних"  }} </p>
-  
-      <table-route-timetable :routeid="id"></table-route-timetable>
+      <p>{{ bus_age != null ? "Найстарший автобус на маршруті:" +  bus_age : "" }} </p>
+      <p>{{  bus_comfort_level != null ? "Клас комфортності: " + bus_comfort_level : ""  }} </p>
+      <p>{{ route_regularity != null ? "Частота: " + route_regularity : ""  }} </p>
+      <p>{{ border_crossing != null ? "Пункт перетину кордону: " + border_crossing : ""  }} </p>
+      <p>{{ destionation_country_name != null ? "Частота: " + destionation_country_name : ""  }} </p>
 
+      <table-route-timetable :routeid="id"></table-route-timetable>
     </div>
     `
   });
