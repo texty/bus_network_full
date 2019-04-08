@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/main.css">
     <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.35.1/mapbox-gl.css" rel='stylesheet' />
     <script src="http://localhost:8098"></script>
-    <title>bus_routes</title>
+    <title>Мережа автобусних маршрутів</title>
   </head>
   <body>
     <div id="main">
@@ -26,8 +26,8 @@
         </div>
         <div id="app">
           <nav id="search_buttons">
-            <button @click="changeToOblast()" :class="{active:true}">Обласні</button>
-            <button @click="changeToInternational()" :class="{active:false}">Міжнародні</button>
+            <button @click="changeToOblast()" :class="{active: screen == 'oblast'}">Обласні</button>
+            <button @click="changeToInternational()" :class="{active: screen == 'internatation'}">Міжнародні</button>
           </nav>
           <table>
             <p id="selected_city">Обране місто: <span>{{ selectedCityName }} </span></p>
