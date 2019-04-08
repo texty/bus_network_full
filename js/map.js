@@ -277,7 +277,7 @@ markersInt.on('mouseout', d => {
     }
   })
 
-console.log(store.getters.selectedCityName, 'name');
+// console.log(store.getters.selectedCityName, 'name');
 
 var states = new Bloodhound({
   datumTokenizer: Bloodhound.tokenizers.whitespace,
@@ -393,21 +393,20 @@ var gl = L.mapboxGL({
   template: 
   `
   <div>
-    <button class="schedule" @click="headerClick"> Розклад </button>
+    <button :class="{schedule: true, active: show}" @click="headerClick"> Розклад </button>
     <div v-if="show">
       <button @click="direction = !direction">
         {{ direction ? "Прямий" : "Зворотній" }}
       </button>
       <p v-for="(item, index) in routeListInt"
           v-bind:key="index"
-      >        
-        {{
-          direction 
-          ? item.stop_name + "  " 
-          + item.arrival_direct 
-          : item.stop_name +  " | " 
-          + item.arrival_return
-        }}
+      >
+        <span class="stop_name">
+          {{ item.stop_name }}
+        </span>
+        <span class="stop_name">
+          {{ direction ? item.arrival_direct : arrival_return }}
+        </span>
       </p>
     </div>
   </div>
@@ -442,9 +441,8 @@ var gl = L.mapboxGL({
     },
     template: 
     `
-    <div class="city_route">
-      <h3 @click="$emit('update:selected', idx)"
-        :class="{active: show}">
+    <div class="city_route" :class="{active: show}">
+      <h3 @click="$emit('update:selected', idx)">
         {{ name }}
       </h3>
       <div v-if="show" class="route_details">
@@ -477,8 +475,6 @@ var gl = L.mapboxGL({
   `
     <div>
     <button @click="changeToInt"></button>
-    <button></button>
-    <h3></h3>
       <table-route v-for="(name, index) in selectedStop" 
       v-bind:key="index"
       :selected.sync="selected"

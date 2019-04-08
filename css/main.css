@@ -68,12 +68,14 @@ div#main {
   margin-right: 0.5em;
 }
 #search_buttons button.active {
-  background-color: #9d9d9d;
+  background-color: #727272;
 }
 
 #bloodhound {
   background-color: #f1f1f1;
-  margin: 0.5em 0 1em 0;
+  padding: 0.5em 0 1em 0;
+  position: sticky;
+  top: 0;
 }
 #bloodhound input {
   border-radius: 0;
@@ -109,34 +111,35 @@ div#nav #selected_city span {
   text-decoration: underline #eb00ff;
   margin: 0.5em 0 0 0;
 }
-div#nav .city_route > h3 {
+
+.city_route {
+  border-bottom: 1px solid #b9b9b9;
+}
+.city_route h3 {
   font-weight: normal;
   color: #373737;
   font-size: 1rem;
-  padding: 0.25em;
+  padding: 0.5em 0.25em 0.15em 0.25em;
   cursor: pointer;
-  border-radius: 0.25em;
   transition: background-color 0.25s, padding 0.5s, color 0.25s;
 }
-div#nav .city_route > h3:hover {
+.city_route h3:hover {
   background-color: rgba(235, 0, 255, 0.33);
 }
-div#nav .city_route > h3.active {
+.city_route.active {
+  background-color: white;
+  padding-bottom: 2.5em;
+}
+.city_route.active h3 {
   background-color: #eb00ff;
   color: white;
   padding-left: 1.5em;
-  margin-bottom: 2.5em;
 }
-div#nav div#app .city_route {
-  margin: 0.25em 0 1.25em 0;
+
+.route_details {
+  margin: 1em 0 1.5em 1.5em;
 }
-div#nav div#app .city_route.active {
-  background-color: #dfdfdf;
-}
-div#nav div#app .route_details {
-  margin: 0 0 1.5em 1.5em;
-}
-div#nav div#app .route_details p {
+.route_details p {
   font-size: 0.85em;
   color: #515151;
   margin: 0 0 1.25em 0;
