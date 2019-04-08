@@ -10,8 +10,8 @@
     crossorigin=""/>
     <link rel="stylesheet" href="css/main.css">
     <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.35.1/mapbox-gl.css" rel='stylesheet' />
-    <script src="http://localhost:8098"></script>
-    <title>bus_routes</title>
+<!--     <script src="http://localhost:8098"></script>
+ -->    <title>bus_routes</title>
   </head>
   <body>
     <div id="main">
@@ -31,7 +31,14 @@
 
         <div id="app">
           <table>
+<<<<<<< HEAD
             <h3 id="selected_city">{{ "Тут буде назва міста " +  selectedCityName }}</h3>
+=======
+            <button @click="changeToOblast()">Обласні</button>
+            <button @click="changeToInternational()">Міжнародні</button>
+            <p> {{ "Вибране місто:" }} </p>
+            <h3>{{ selectedCityName }}</h3>
+>>>>>>> 97f5b53f7555e13ce3618d93c622484e90bc2d7f
             <table-route v-for="(name, index) in selectedStop" 
               v-bind:key="index"
               :selected.sync="selected"

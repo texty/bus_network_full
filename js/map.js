@@ -215,9 +215,6 @@ markersInt.on('click', function(d){
           return d.start.cityCode == state.selectedCity || d.end.cityCode == state.selectedCity
         })
       },
-      selectedCityName: state => {
-        return state.selectedCity
-      },
       nestedStopNames: function(state){
         var stops = [];
         
@@ -227,7 +224,10 @@ markersInt.on('click', function(d){
         })
 
         return stops     
-      }
+      },
+      selectedCityName: function(state){
+        return store.getters.nestedStopNames.filter(d => d.value == state.selectedCity)[0].key
+      },
     },
     actions: {
       changeData(state) {
@@ -239,6 +239,7 @@ markersInt.on('click', function(d){
     }
   })
 
+console.log(store.getters.selectedCityName, 'name');
 
 var states = new Bloodhound({
   datumTokenizer: Bloodhound.tokenizers.whitespace,
@@ -259,9 +260,11 @@ $('#bloodhound .typeahead').typeahead({
   });
 
   $('.typeahead').on('typeahead:selected', function(evt, item) {
-    console.log(nestedStopNames);
-    /* store.commit('change', nestedStopNames.filter(d => d.key == item)[0].value);
-    overlay.redraw({redraw:true, data:store.getters.routesToDisplay}); */
+
+    var selected = store.getters.nestedStopNames.filter(d => d.key == item)[0].value
+    console.log(selected);
+    store.commit('change', selected);
+    overlay.redraw({redraw:true, data:store.getters.routesToDisplay});
   
   })
 
