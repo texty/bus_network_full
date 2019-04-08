@@ -395,7 +395,7 @@ var gl = L.mapboxGL({
   <div>
     <button :class="{schedule: true, active: show}" @click="headerClick"> Розклад </button>
     <div v-if="show">
-      <button @click="direction = !direction" class="direction">
+      <button @click="direction = !direction" :class="{direction: true, straight: direction}">
         {{ direction ? "Прямий" : "Зворотній" }}
       </button>
       <p v-for="(item, index) in routeListInt"
@@ -405,7 +405,7 @@ var gl = L.mapboxGL({
           {{ item.stop_name }}
         </span>
         <span class="stop_name">
-          {{ direction ? item.arrival_direct : arrival_return }}
+          {{ direction ? item.arrival_direct : item.arrival_return }}
         </span>
       </p>
     </div>
@@ -415,33 +415,36 @@ var gl = L.mapboxGL({
 
 
   var tableRoute = Vue.component('table-route', {
-      props: {
-        idx: Number,
-        show: Boolean,
-        id: String,
-        name: String,
-        company_name: String,
-        license_data: String,
-        bus_age: String,
-        route_regularity: String,
-        bus_comfort_level: String,
-        destionation_country_name: String,
-        border_crossing: String
+    props: {
+      idx: Number,
+      show: Boolean,
+      id: String,
+      name: String,
+      company_name: String,
+      license_data: String,
+      bus_age: String,
+      route_regularity: String,
+      bus_comfort_level: String,
+      destionation_country_name: String,
+      border_crossing: String
+    },
 
-      },
     data: function () {
       return {
         show: true,
       }
     },
+
     component: {
       'table-route-timetable': timetable
     },
+
     methods: {
       open: function() {
         this.$emit('selected');
       },
     },
+
     template: 
     `
     <div class="city_route" :class="{active: show}">

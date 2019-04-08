@@ -188,6 +188,15 @@ button.schedule {
 
 button.direction {
   &:before {
-    
+    content: "↻";
+    color: $pink;
+    transition: transform 0.5s;
+  }
+
+  &.straight {
+    &:before {
+      transform: rotate(180deg);
+    }
   }
 }
+
