@@ -21,24 +21,19 @@
         </div>
       </figure>
       <div id="nav">
-        <nav id="search_buttons">
-          <div id="bloodhound">
-            <input class="typeahead" type="text" placeholder="Назва міста">
-          </div>
-          <button @click="changeToOblast()">Обласні</button>
-          <button @click="changeToInternational()">Міжнародні</button>
-        </nav>
-
         <div id="app">
-          <table>
-<<<<<<< HEAD
-            <h3 id="selected_city">{{ "Тут буде назва міста " +  selectedCityName }}</h3>
-=======
+        <nav id="search_buttons">
+            <div id="bloodhound">
+              <input class="typeahead" type="text" placeholder="Назва міста">
+            </div>
             <button @click="changeToOblast()">Обласні</button>
             <button @click="changeToInternational()">Міжнародні</button>
+          </nav>
+          <table>
+<!--             <button @click="changeToOblast()">Обласні</button>
+            <button @click="changeToInternational()">Міжнародні</button> -->
             <p> {{ "Вибране місто:" }} </p>
             <h3>{{ selectedCityName }}</h3>
->>>>>>> 97f5b53f7555e13ce3618d93c622484e90bc2d7f
             <table-route v-for="(name, index) in selectedStop" 
               v-bind:key="index"
               :selected.sync="selected"
