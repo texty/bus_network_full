@@ -21,7 +21,7 @@ body {
   }
 }
 
-div#main {
+#main {
   display: grid;
   grid-template-columns: 5fr 2fr;
   margin: 0 1em;
@@ -144,15 +144,11 @@ div#nav {
     &:hover {
       background-color: rgba($pink, 0.33);
     }
-
-    &.active {
-      
-    }
   }
 
   &.active {
     // background-color: darken($bgcol, 7%);
-    background-color: lighten($bgcol, 85%);
+    // background-color: lighten($bgcol, 85%);
     padding-bottom: 2.5em;
 
     h3 {
@@ -219,5 +215,35 @@ button.direction {
   span:last-of-type {
     color: $pink;
     font-weight: 800;
+  }
+}
+
+.leaflet-popup-content-wrapper {
+  margin: 0;
+  padding: 0.75em;
+
+  * {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+#loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  background-color: $bgcol;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 5em;
+    height: 5em;
+    margin: 1em;
   }
 }

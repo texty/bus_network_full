@@ -13,13 +13,13 @@ body * {
   outline: none;
 }
 
-div#main {
+#main {
   display: grid;
   grid-template-columns: 5fr 2fr;
   margin: 0 1em;
 }
 @media screen and (max-width: 800px) {
-  div#main {
+  #main {
     display: block;
   }
 }
@@ -128,7 +128,6 @@ div#nav #selected_city span {
   background-color: rgba(235, 0, 255, 0.33);
 }
 .city_route.active {
-  background-color: white;
   padding-bottom: 2.5em;
 }
 .city_route.active h3 {
@@ -187,6 +186,34 @@ button.direction.straight:before {
 .route_row span:last-of-type {
   color: #eb00ff;
   font-weight: 800;
+}
+
+.leaflet-popup-content-wrapper {
+  margin: 0;
+  padding: 0.75em;
+}
+.leaflet-popup-content-wrapper * {
+  padding: 0;
+  margin: 0;
+}
+
+#loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  background-color: #fafafa;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#loading img {
+  width: 5em;
+  height: 5em;
+  margin: 1em;
 }
 
 /*# sourceMappingURL=main.css.map */

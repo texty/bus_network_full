@@ -151,7 +151,7 @@ markers.on('click', function(d){
 
 markers.on('mouseover', d => {
   d.layer.setStyle({fillColor: selectedRouteColor});
-  popup = L.popup()
+  popup = L.popup({closeButton: false})
       .setLatLng(d.latlng)
       .setContent(d.layer.feature.properties.cityName)
       .openOn(map);
@@ -174,7 +174,7 @@ markersInt.on('click', function(d){
 
 markersInt.on('mouseover', d => {
   d.layer.setStyle({fillColor: selectedRouteColor});
-  popup = L.popup()
+  popup = L.popup({closeButton: false})
       .setLatLng(d.latlng)
       .setContent(d.layer.feature.properties.cityName)
       .openOn(map);
@@ -277,8 +277,6 @@ markersInt.on('mouseout', d => {
     }
   })
 
-// console.log(store.getters.selectedCityName, 'name');
-
 var states = new Bloodhound({
   datumTokenizer: Bloodhound.tokenizers.whitespace,
   queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -301,7 +299,6 @@ $('#bloodhound .typeahead').typeahead({
     $(this).val("");
 
     var selected = store.getters.nestedStopNames.filter(d => d.key == item)[0].value
-    console.log(selected);
     store.commit('change', selected);
     overlay.redraw({redraw:true, data:store.getters.routesToDisplay});
   
@@ -456,7 +453,7 @@ var gl = L.mapboxGL({
       <p>{{  company_name != null ?  "Перевізник: " + company_name : ""}} </p>
       <p>Тривалість ліцензії: {{  license_data != null ?  license_data : "немає даних" }} </p>
       <p>{{ bus_age != null ? "Найстарший автобус на маршруті:" +  bus_age : "" }} </p>
-      <p>{{  bus_comfort_level != null ? "Клас комфортності: " + bus_comfort_level : ""  }} </p>
+      <p class="comfort" >{{  bus_comfort_level != null ? "Клас комфортності: " + bus_comfort_level : ""  }} </p>
       <p>{{ route_regularity != null ? "Частота: " + route_regularity : ""  }} </p>
       <p>{{ border_crossing != null ? "Пункт перетину кордону: " + border_crossing : ""  }} </p>
       <p>{{ destionation_country_name != null ? "Частота: " + destionation_country_name : ""  }} </p>
@@ -532,6 +529,7 @@ new Vue({
     }
   },
   mounted() {
+    document.getElementById('loading').remove()
   },
   // watch: {
   //   selectedStop: function(val) {
