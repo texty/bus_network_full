@@ -1,9 +1,40 @@
 @charset "UTF-8";
+@font-face {
+  font-family: Clear-Sans;
+  font-weight: 100;
+  src: url(../fonts/ClearSans-Light.ttf) format("truetype");
+}
+@font-face {
+  font-family: Clear-Sans;
+  font-weight: normal;
+  src: url(../fonts/ClearSans-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: Clear-Sans;
+  font-style: italic;
+  src: url(../fonts/ClearSans-Italic.ttf) format("truetype");
+}
+@font-face {
+  font-family: Clear-Sans;
+  font-weight: bold;
+  src: url(../fonts/ClearSans-Bold.ttf) format("truetype");
+}
+@font-face {
+  font-family: Clear-Sans;
+  font-weight: bold;
+  font-style: italic;
+  src: url(../fonts/ClearSans-BoldItalic.ttf) format("truetype");
+}
+@font-face {
+  font-family: Roboto;
+  font-weight: normal;
+  src: url(../fonts/RobotoCondensed-Light.ttf) format("truetype");
+}
 body {
   padding: 0;
   margin: 0;
   background-color: #fafafa;
-  font-family: sans-serif;
+  font-family: "Clear-Sans", sans-serif;
   color: #111111;
 }
 body * {
@@ -13,10 +44,48 @@ body * {
   outline: none;
 }
 
+section.text {
+  margin: 3em 1em 0 1em;
+  line-height: 1.75;
+}
+section.text h3 {
+  color: #eb00ff;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 0;
+}
+section.text p {
+  margin: 0 0 1.5em 0;
+}
+section.text p:first-of-type {
+  margin-top: 1em;
+}
+section.text a {
+  text-decoration: none;
+  color: #eb00ff;
+  font-weight: 400;
+}
+@media screen and (min-width: 801px) {
+  section.text {
+    margin: 4em 7.5% 0 7.5%;
+  }
+}
+@media screen and (min-width: 950px) {
+  section.text {
+    margin: 4em 20% 0 20%;
+  }
+}
+@media screen and (min-width: 1400px) {
+  section.text {
+    margin: 4em 25% 0 25%;
+  }
+}
+
 #main {
   display: grid;
   grid-template-columns: 5fr 2fr;
   margin: 0 1em;
+  position: relative;
 }
 @media screen and (max-width: 800px) {
   #main {
@@ -199,9 +268,7 @@ button.direction.straight:before {
 
 #loading {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   z-index: 1000;
   background-color: #fafafa;

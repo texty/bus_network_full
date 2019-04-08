@@ -1,16 +1,21 @@
+@import './fonts.scss';
+
 $fontcol: #111111;
 $bgcol: #fafafa;
 $pink: #eb00ff;
+$fontfam: "Clear-Sans", sans-serif;
 
 $mobile: 'screen and (max-width: 800px) ';
 $medium: 'screen and (min-width: 801px) ';
+$xlarge: ' screen and (min-width: 1400px)';
+$large: ' screen and (min-width: 950px)';
 
 
 body {
   padding: 0;
   margin: 0;
   background-color: $bgcol;
-  font-family: sans-serif;;
+  font-family: $fontfam;
   color: $fontcol;
 
   * {
@@ -21,10 +26,49 @@ body {
   }
 }
 
+section.text {
+  margin: 3em 1em 0 1em;
+  line-height: 1.75;
+
+  h3 {
+    color: $pink;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  p {
+    margin: 0 0 1.5em 0;
+  }
+
+  p:first-of-type {
+    margin-top: 1em;
+  }
+
+  a {
+    text-decoration: none;
+    color: $pink;
+    font-weight: 400;
+  }
+
+  @media #{$medium} {
+    margin: 4em 7.5% 0 7.5%;
+  }
+
+  @media #{$large} {
+    margin: 4em 20% 0 20%;
+  }
+
+  @media #{$xlarge} {
+    margin: 4em 25% 0 25%;
+  }
+}
+
 #main {
   display: grid;
   grid-template-columns: 5fr 2fr;
   margin: 0 1em;
+  position: relative;
 
   @media #{$mobile} {
     display: block;
@@ -230,9 +274,7 @@ button.direction {
 
 #loading {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   z-index: 1000;
   background-color: $bgcol;
