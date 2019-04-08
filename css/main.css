@@ -50,21 +50,7 @@ div#main {
 }
 
 #search_buttons {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-@media screen and (min-width: 801px) {
-  #search_buttons #bloodhound {
-    grid-column: 1/-1;
-  }
-}
-@media screen and (max-width: 800px) {
-  #search_buttons {
-    grid-template-columns: auto auto auto 1fr;
-  }
-  #search_buttons button {
-    min-width: 8em;
-  }
+  display: flex;
 }
 #search_buttons button {
   display: inline-block;

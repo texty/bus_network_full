@@ -57,22 +57,7 @@ figure {
 }
 
 #search_buttons {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-
-  @media #{$medium} {
-    #bloodhound {
-      grid-column: 1 / -1;
-    }
-  }
-
-  @media #{$mobile} {
-    grid-template-columns: auto auto auto 1fr;
-
-    button {
-      min-width: 8em;
-    }
-  }
+  display: flex;
 
   button {
     display: inline-block;
@@ -90,15 +75,15 @@ figure {
       margin-right: 0.5em;
     }
   }
+}
 
-  #bloodhound {
-    input {
-      border-radius: 0;
-      border: none;
-      border: 1px solid lighten($fontcol, 33%);
-      padding: 0.25em  0.5em;
-      margin: 0.5em 0 1em 0;
-    }
+#bloodhound {
+  input {
+    border-radius: 0;
+    border: none;
+    border: 1px solid lighten($fontcol, 33%);
+    padding: 0.25em  0.5em;
+    margin: 0.5em 0 1em 0;
   }
 }
 
