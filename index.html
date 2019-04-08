@@ -26,11 +26,17 @@
         </div>
         <div id="app">
           <nav id="search_buttons">
+<<<<<<< HEAD
             <button @click="changeToOblast()">Обласні</button>
             <button @click="changeToInternational()">Міжнародні</button>
+=======
+            <button @click="changeToOblast()" :class="{active:true}">Обласні</button>
+            <button @click="changeToInternational()" :class="{active:false}">Міжнародні</button>
+>>>>>>> 9853d20f5297977916d2f2053f1a500802fdc8ae
           </nav>
           <table>
-            <h3 id="selected_city">{{ "Тут буде назва міста " +  selectedCityName }}</h3>
+            <p id="selected_city">Обране місто: <span>{{ selectedCityName }} </span></p>
+            <!-- <h3></h3> -->
             <table-route v-for="(name, index) in selectedStop" 
               v-bind:key="index"
               :selected.sync="selected"
