@@ -1,5 +1,5 @@
 $fontcol: #111111;
-$bgcol: #f1f1f1;
+$bgcol: #fafafa;
 $pink: #eb00ff;
 
 $mobile: 'screen and (max-width: 800px) ';
@@ -166,9 +166,28 @@ div#nav {
 .route_details {
   margin: 1em 0 1.5em 1.5em;
 
-  p {
+  & > p {
     font-size: 0.85em;
     color: lighten($fontcol, 25%);
     margin: 0 0 1.25em 0; 
+  }
+}
+
+button.schedule {
+  border-radius: 0;
+  border: none;
+  background-color: lighten($pink, 25%);
+  padding: 0.25em 0.75em;
+  transition: color 0.5s, background-color 0.5s;
+
+  &:hover, &.active {
+    color: white;
+    background-color: $pink;
+  }
+}
+
+button.direction {
+  &:before {
+    
   }
 }

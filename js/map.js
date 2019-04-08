@@ -395,7 +395,7 @@ var gl = L.mapboxGL({
   <div>
     <button :class="{schedule: true, active: show}" @click="headerClick"> Розклад </button>
     <div v-if="show">
-      <button @click="direction = !direction">
+      <button @click="direction = !direction" class="direction">
         {{ direction ? "Прямий" : "Зворотній" }}
       </button>
       <p v-for="(item, index) in routeListInt"
@@ -415,17 +415,17 @@ var gl = L.mapboxGL({
 
 
   var tableRoute = Vue.component('table-route', {
-      props: {
-        idx: Number,
-        show: Boolean,
-        id: String,
-        name: String,
-        company_name: String,
-        license_data: String,
-        bus_age: String,
-        route_regularity: String,
-        bus_comfort_level: String,
-      },
+    props: {
+      idx: Number,
+      show: Boolean,
+      id: String,
+      name: String,
+      company_name: String,
+      license_data: String,
+      bus_age: String,
+      route_regularity: String,
+      bus_comfort_level: String,
+    },
     data: function () {
       return {
         show: true,
