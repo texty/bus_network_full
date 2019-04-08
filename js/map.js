@@ -406,7 +406,10 @@ var gl = L.mapboxGL({
     template: 
     `
     <div>
-      <h3 @click="$emit('update:selected', idx)"> {{ name }} </h3>
+      <h3 @click="$emit('update:selected', idx)"
+        :class="{active: show}">
+        {{ name }}
+      </h3>
       <div v-if="show">
       <p>Перевізник: {{  company_name != null ?  company_name : "немає даних"}} </p>
       <p>Тривалість ліцензії: {{  license_data != null ?  license_data : "немає даних" }} </p>

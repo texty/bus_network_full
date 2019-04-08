@@ -118,19 +118,28 @@ div#nav {
     margin: 0.25em 0 1.25em 0;
     padding: 0.25em;
     cursor: pointer;
-    transition: color 0.25s;
+    border-radius: 0.25em;
+    transition: background-color 0.25s, padding 0.5s, color 0.25s;
 
     &:hover {
-      color: $pink;
+      background-color: rgba($pink, 0.33);
     }
 
-    &:.active {
+    &.active {
       background-color: $pink;
+      color: white;
+      padding-left: 1.5em;
     }
   }
 
-  // div#app {
-  //   position: sticky;
-  //   overflow: auto;
-  // }
+  div#app {
+    div > div {
+      margin: 0 0 1.5em 1.5em;
+
+      p {
+        font-size: 0.85em;
+        color: 
+      }
+    }
+  }
 }
