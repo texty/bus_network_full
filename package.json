@@ -5,8 +5,8 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx node-sass --include-path scss css/main.scss css/main.css",
-    "watch": "nodemon -e scss -x \"npm run build-css\""
+    "build": "npx sass css/main.scss css/main.css",
+    "watch": "npx nodemon -e css -x \"npm run build\""
   },
   "repository": {
     "type": "git",

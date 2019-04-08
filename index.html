@@ -15,33 +15,35 @@
   </head>
   <body>
     <div id="main">
+      <figure>
         <div id="map"></div>
-        <div id="nav">
-            <div id="bloodhound">
-                <input class="typeahead" type="text" placeholder="Назва міста">
-            </div>
-            <div id="app">
-              <table>
-                  <button @click="changeToOblast()">Обласні</button>
-                  <button @click="changeToInternational()">Міжнародні</button>
-                  <h3>{{ "Тут буде назва міста " +  selectedCityName }}</h3>
-                  <table-route v-for="(name, index) in selectedStop" 
-                    v-bind:key="index"
-                    :selected.sync="selected"
-                    :idx="index"
-                    :show="selected == index"
-                    :name="name.march_route_name" 
-                    :company_name="name.company_name"
-                    :license_data="name.license_terms"
-                    :bus_age="name.bus_age"
-                    :route_regularity="name.march_route_regularity"
-                    :bus_comfort_level="name.bus_comfort_level"
-                    :id="name.id"
-                  >
-                  </table-route> 
-              </table> 
-            </div>
+      </figure>
+      <div id="nav">
+        <div id="bloodhound">
+            <input class="typeahead" type="text" placeholder="Назва міста">
         </div>
+        <div id="app">
+          <table>
+            <button @click="changeToOblast()">Обласні</button>
+            <button @click="changeToInternational()">Міжнародні</button>
+            <h3>{{ "Тут буде назва міста " +  selectedCityName }}</h3>
+            <table-route v-for="(name, index) in selectedStop" 
+              v-bind:key="index"
+              :selected.sync="selected"
+              :idx="index"
+              :show="selected == index"
+              :name="name.march_route_name" 
+              :company_name="name.company_name"
+              :license_data="name.license_terms"
+              :bus_age="name.bus_age"
+              :route_regularity="name.march_route_regularity"
+              :bus_comfort_level="name.bus_comfort_level"
+              :id="name.id"
+            >
+            </table-route> 
+          </table> 
+        </div>
+      </div>
     </div>
 
     <script src="libs/leaflet.js "></script>
