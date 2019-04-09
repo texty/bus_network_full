@@ -1,8 +1,8 @@
 Promise.all([
   d3.json("data/oblast_geo_simple.json"),
   d3.json("data/europe.json"),
-  d3.json("data/routesUA.json"),
-  d3.json("data/stopsUA.json"),
+  d3.json("data/routesUA_M.json"),
+  d3.json("data/stopsUA_M.json"),
   d3.json("data/output.json"),
   d3.json("data/international_routes_stops.json"),
 ]).then(function([o, e, data, stops, international_routes, international_routes_stops]) {
