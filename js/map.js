@@ -109,7 +109,7 @@ var scale = d3
 var scaleInt = d3
   .scaleLog()
   .domain([1, max]) // input
-  .range([2, 6]); // output
+  .range([2, 5]); // output
 
 var markers = L.geoJSON(geojson, {
   pointToLayer: function(feature, latlng) {
@@ -125,6 +125,9 @@ var markers = L.geoJSON(geojson, {
   }
 }).addTo(map);
 
+
+map.fitBounds(markers.getBounds());
+
 var markersInt = L.geoJSON(geojsonInt, {
   pointToLayer: function(feature, latlng) {
     return L.circleMarker(latlng, {
@@ -138,6 +141,7 @@ var markersInt = L.geoJSON(geojsonInt, {
     });
   }
 });
+
 
 markers.on('click', function(d){
   var a = d.sourceTarget.feature.properties.cityCode;
@@ -219,7 +223,8 @@ markersInt.on('mouseout', d => {
         oblastBoundaries.remove();
         europe.addTo(map);
         markersInt.addTo(map);
-        map.setView([49.842602, 24.027704], 5)
+        map.fitBounds(markersInt.getBounds());
+       /*  map.setView([49.842602, 24.027704], 5) */
 
       }, 
       changeDataObl(state) {
@@ -239,7 +244,8 @@ markersInt.on('mouseout', d => {
         europe.remove();
         oblastBoundaries.addTo(map);
         markers.addTo(map);
-        map.setView([49.272021, 31.437523], 6);
+        map.fitBounds(markers.getBounds());
+        /* map.setView([49.272021, 31.437523], 6); */
 
       }
     },
@@ -333,9 +339,9 @@ map.addControl(L.control.zoom({ position: 'topleft' })); */
 
 var gl = L.mapboxGL({
     accessToken: 'pk.eyJ1IjoicHRyYmRyIiwiYSI6ImNqZG12dWdtYzBwdzgyeHAweDFueGZrYTYifQ.ZJ2tgs6E94t3wBwFOyRSBQ',
-    maxZoom: 6,
-    minZoom:5,
-    pane: 'tilePane'
+    maxZoom: 19,
+/*     minZoom:5,
+ */    pane: 'tilePane'
 }).addTo(map);
 
   var background = countryOverlay.draw(map, store.state.routes, backgroundRouteColor, 0.5);
