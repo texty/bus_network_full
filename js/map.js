@@ -458,7 +458,7 @@ var gl = L.mapboxGL({
       <p class="comfort" >{{  bus_comfort_level != null ? "Клас комфортності: " + bus_comfort_level : ""  }} </p>
       <p>{{ route_regularity != null ? "Частота: " + route_regularity : ""  }} </p>
       <p>{{ border_crossing != null ? "Пункт перетину кордону: " + border_crossing : ""  }} </p>
-      <p>{{ destionation_country_name != null ? "Частота: " + destionation_country_name : ""  }} </p>
+      <p>{{ destionation_country_name != null ? "Країна прибуття: " + destionation_country_name : ""  }} </p>
 
       <table-route-timetable :routeid="id"></table-route-timetable>
     </div>
