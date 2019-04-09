@@ -26,6 +26,108 @@ body {
   }
 }
 
+header {
+  min-height: 100vh;
+  background-image: url("../img/purpule_bus.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  h2, h1 {
+    display: inline-block;
+    margin: 0 3px 0 1rem;
+   
+    @media #{$medium} {
+      margin: 1rem 5%;
+    }
+  
+    @media #{$large} {
+      margin: 1rem 15%;
+    }
+  
+    @media #{$xlarge} {
+      margin: 1rem 20%;
+    }
+  }
+
+  h1 {
+    margin-top: calc(5vh + 2rem) !important;
+    font-size: 2rem;
+    text-transform: uppercase;
+    color: $pink;
+    line-height: 1.5;
+
+    @media #{$xlarge} {
+      font-size: 4rem;
+    }
+
+    @media #{$large} {
+      font-size: 3rem;
+    }
+
+    @media #{$medium} {
+      font-size: 2.5rem;
+    }
+  }
+
+  h2 {
+    margin-top: 2em; 
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.75;
+    background-color: rgba($bgcol, 0.5);
+  }
+
+}
+
+#logo-soc {
+  width: 100%;
+  padding: 1em 1em 0.25em 1em;
+  position: absolute;
+  top: 0;
+
+
+  #pub-logo {
+    img {
+      padding: 0;
+      margin: 0;
+      max-height: 1.75em;
+      background-color: rgba($bgcol, 0.7);
+    }
+  }
+
+  #soc {
+    position: fixed;
+    display: flex !important;
+    top: 1em;
+    right: 1em;
+    flex-direction: row;
+    @media #{$large} {
+      display: block;
+    }
+
+    i {
+      color: $pink;
+      margin: 0 0 0 0.5em;
+      max-height: 1em;
+      transition: all 0.5s;
+
+      &:hover {
+        color: $fontcol;
+      }
+    }
+  }
+}
+
+@media #{$large} {
+  #logo-soc {
+    padding: 1em 2em 1em 2em;
+    i {
+      font-size: 1.75em;
+    }
+  }
+}
+
 section.text {
   margin: 3em 1em 0 1em;
   line-height: 1.75;
@@ -35,6 +137,14 @@ section.text {
     text-transform: uppercase;
     font-weight: 600;
     margin: 0;
+  }
+
+  h4 {
+    font-weight: 600;
+    text-transform: uppercase;
+    // font-size: 0.85em;
+    margin: 1em 0 0.25em 0;
+    color: lighten($fontcol, 15%);
   }
 
   p {
@@ -47,8 +157,20 @@ section.text {
 
   a {
     text-decoration: none;
-    color: $pink;
-    font-weight: 400;
+    border-bottom: 1px solid $pink;
+    color: $fontcol;
+  }
+
+  li {
+    list-style-type: none;
+    margin-left: 1.5em;
+    margin-bottom: 1em;
+
+    &::before {
+      content: "-";
+      // color: lighten($fontcol, 25%);
+      margin: 0 0.5em 0 0;
+    }
   }
 
   @media #{$medium} {
@@ -67,7 +189,7 @@ section.text {
 #main {
   display: grid;
   grid-template-columns: 5fr 2fr;
-  margin: 0 1em;
+  margin: 2em 1em;
   position: relative;
 
   @media #{$mobile} {
@@ -287,5 +409,90 @@ button.direction {
     width: 5em;
     height: 5em;
     margin: 1em;
+  }
+}
+
+footer {
+
+  #read_more {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 4em 3em 2em 3em;
+    grid-gap: 3em;
+
+    @media #{$mobile} {
+      grid-template-columns: 1fr;
+    }
+
+    h3 {
+      grid-column: 1 / -1;
+      text-align: center;
+      font-size: 1.25em;
+    }
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  #donors {
+    margin: 4em 1em;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+
+    img {
+      max-height: 5em;
+      max-width: 10em;
+      margin: 1em;
+      width: auto;
+    }
+  }
+
+  #created_texty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+    margin: 4em 15% 4em 15%;
+
+    i{
+      box-sizing: content-box;
+      margin: 0.5em;
+      cursor: pointer;
+      width: 1em;
+      height: 1em;
+      border: 1px solid lighten($fontcol, 50%);
+      color: lighten($fontcol, 50%);
+      border-radius: 50%;
+      padding: 0.5em;
+      font-size: 2.5em;
+      line-height: 1;
+      transition: all 0.5s;
+
+      &:hover {
+        border: 1px solid lighten($fontcol, 15%);
+        color: lighten($fontcol, 15%);
+      }
+    }
+
+    img {
+      max-height: 4em;
+      max-width: 90%;
+    }
+
+    div {
+      text-align: center;
+    }
+
+    h3 {
+      text-align: center;
+      font-size: 1.5rem;
+    }
   }
 }

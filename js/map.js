@@ -51,10 +51,6 @@ let nestedStops_int = d3.nest()
   .rollup(leaves => leaves[0].stop_code)
   .entries(international_routes_stops); */
 
-  console.log('oblast', data);
-  console.log('int', data_int);
-
-
 let allPointsData = [
   ...data.map(d => d.start),
   ...data.map(d => d.end)
