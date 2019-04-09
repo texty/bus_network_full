@@ -12,7 +12,7 @@ Promise.all([
   var backgroundRouteColor = "#b7acac";
   var selectedRouteColor = "#EB00FF";
 
-var map = L.map('map', { zoomControl:false }).setView([49.272021, 31.437523], 6);
+var map = L.map('map', { zoomControl:false }).setView([49.272021, 31.437523], 5);
 map.scrollWheelZoom.disable()
 map.addControl(L.control.zoom({ position: 'topleft' }));
 /* 
@@ -223,8 +223,8 @@ markersInt.on('mouseout', d => {
         oblastBoundaries.remove();
         europe.addTo(map);
         markersInt.addTo(map);
-        map.fitBounds(markersInt.getBounds());
-       /*  map.setView([49.842602, 24.027704], 5) */
+        /* map.fitBounds(markersInt.getBounds()); */
+        map.setView([49.842602, 24.027704], 4)
 
       }, 
       changeDataObl(state) {
@@ -244,8 +244,8 @@ markersInt.on('mouseout', d => {
         europe.remove();
         oblastBoundaries.addTo(map);
         markers.addTo(map);
-        map.fitBounds(markers.getBounds());
-        /* map.setView([49.272021, 31.437523], 6); */
+        /* map.fitBounds(markers.getBounds()) */
+        map.setView([49.272021, 31.437523], 6);
 
       }
     },
