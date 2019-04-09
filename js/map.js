@@ -349,9 +349,6 @@ var gl = L.mapboxGL({
 
 
 Vue.use(VueTippy);
-
-
-
   var timetable = Vue.component('table-route-timetable', {
     props: {
       routeid: String
@@ -483,19 +480,6 @@ Vue.use(VueTippy);
     </div>
     `
   });
-
-
-
-  // <p >
-  //       <span v-for="l in bus_comfort_level.split(/\s*,\s*/)"
-  //         :key="l"
-  //         class="comfort_level"
-  //         title="comfort-level"
-  //         v-tippy="{ placement : 'top',  arrow: true }"
-  //         >
-  //         {{ l }}
-  //       </span>
-  //     </p>
 
   Vue.component('table', {
   data: function () {
