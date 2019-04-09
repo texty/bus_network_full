@@ -435,6 +435,11 @@ Vue.use(VueTippy);
     data: function () {
       return {
         show: true,
+        tooltip: `
+  <p>Класи комфортності визначають за масою: <strong>M2</strong> - маса менше 5 тон, <strong>M3</strong> - маса більше 5 тон</p>
+  <p>Автобуси місткістю до 22 пасажирів ділять на два класи <strong>A</strong> для стоячих і сидячих, <strong>B</strong> лише для сидячих пасажирів.</p>
+  <p>Якщо в автобусі більше 22 місць існує 3 класи: <strong>I</strong> - для перевезення і сидячих і стоячих, <strong>II</strong> - більше призначені для сидячих пасажирів, <strong>III</strong> - лише для сидячих пасажирів.</p>
+        `,
       }
     },
 
@@ -458,7 +463,18 @@ Vue.use(VueTippy);
       <p>{{  company_name != null ?  "Перевізник: " + company_name : ""}} </p>
       <p>Тривалість ліцензії: {{  license_data != null ?  license_data : "немає даних" }} </p>
       <p>{{ bus_age != null ? "Найстарший автобус на маршруті:" +  bus_age : "" }} </p>
-      <p class="comfort" >{{  bus_comfort_level != null ? "Клас комфортності: " + bus_comfort_level : ""  }} </p>
+      <p
+        v-if="(bus_comfort_level != null) && (bus_comfort_level.length > 0)"
+        class="comfort"
+        >
+        Клас комфортності: {{ bus_comfort_level }}
+        <button
+          class="infotip"
+          :title="tooltip"
+          v-tippy="{ placement : 'top',  arrow: true, trigger: 'click' }"
+          >
+        ? </button>
+      </p>
       <p>{{ route_regularity != null ? "Частота: " + route_regularity : ""  }} </p>
       <p>{{ border_crossing != null ? "Пункт перетину кордону: " + border_crossing : ""  }} </p>
       <p>{{ destionation_country_name != null ? "Країна прибуття: " + destionation_country_name : ""  }} </p>
@@ -468,7 +484,9 @@ Vue.use(VueTippy);
     `
   });
 
-  // <p v-if="(bus_comfort_level != null) && (bus_comfort_level.length > 0)">
+
+
+  // <p >
   //       <span v-for="l in bus_comfort_level.split(/\s*,\s*/)"
   //         :key="l"
   //         class="comfort_level"
