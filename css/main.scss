@@ -525,10 +525,6 @@ button.infotip {
 .tippy-tooltip {
   background-color: darken($bgcol, 7%);
 
-  .tippy-arrow {
-    background-color: darken($bgcol, 7%);
-  }
-
   .tippy-content {
     font-size: 0.9rem;
     padding: 0.5em;
