@@ -104,7 +104,7 @@ var maxInt = d3.max(geojsonInt.map(d => d.properties.freq));
 var scale = d3
     .scaleLog()
     .domain([1, max]) // input
-    .range([3, 12]); // output
+    .range([3, 7]); // output
 
 var scaleInt = d3
   .scaleLog()
