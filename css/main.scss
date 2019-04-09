@@ -76,6 +76,19 @@ header {
     font-weight: 400;
     line-height: 1.75;
     background-color: rgba($bgcol, 0.5);
+
+    span {
+      display: block;
+      font-size: 0.85rem;
+
+      &:first-of-type {
+        margin-top: 1em;
+      }
+
+      &#published {
+        color: lighten($fontcol, 20%);
+      }
+    }
   }
 
 }
