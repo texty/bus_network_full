@@ -193,19 +193,27 @@
             </a>
           </section>
 
-          <!-- <section id="read_more">
+          <section id="read_more">
             <h3>Читайте також:</h3>
-            <a target="_blank" href="http://texty.org.ua/d/urban-heat-web/">
-                <img src="img/udesert.png" alt="Українська бетонна пустеля">
+            <a target="_blank" href="http://texty.org.ua/d/uz/">
+                <img src="img/railway.png" alt="Громадяни пасажири">
             </a>
-            <a target="_blank" href="http://texty.org.ua/pg/article/newsmaker/read/35559">
-                <img src="img/urban.png" alt="Як збудувати місто, в якому варто жити. Лекція Енріке Пеньялоси">
+            <a target="_blank" href="http://texty.org.ua/d/2018/davr/">
+                <img src="img/davr.png" alt="Чиста Вода">
             </a>
-            <a target="_blank" href="http://texty.org.ua/d/longs/dnipro2/">
-                <img src="img/dnipro.png" alt="Вкрадений Дніпро">
+            <a target="_blank" href="http://texty.org.ua/cars/">
+                <img src="img/cars.png" alt="Перша реєстрація автомобілів в Україні">
             </a>
-          </section> -->
-      
+          </section>
+
+          <div id="button">
+              <h3>TEXTY.ORG.UA — незалежне видання без навʼязливої реклами й замовних матеріалів. Щоб працювати далі, нам потрібна ваша підтримка. </h3>
+
+              <div id="button-container">
+                  <a id="support-us" class="button" target="_blank" href="https://www.liqpay.ua/api/3/checkout?data=eyJ2ZXJzaW9uIjozLCJhY3Rpb24iOiJwYXlkb25hdGUiLCJwdWJsaWNfa2V5IjoiaTc2NjUwNTYyODI3IiwiYW1vdW50IjoiNTAiLCJjdXJyZW5jeSI6IlVBSCIsImRlc2NyaXB0aW9uIjoi0J%2FQvtC20LXRgNGC0LLQsCIsInR5cGUiOiJkb25hdGUiLCJsYW5ndWFnZSI6InVrIn0%3D&amp;signature=YFkd4Z74QCJXRxMTPoWm0JVlkX4%3D">ПОЖЕРТВУВАТИ</a>
+              </div>
+          </div>
+
           <section id="created_texty">
             <div>
               <a href="https://www.facebook.com/sharer/sharer.php?u=http://texty.org.ua" class="share-btn"><i class="fab fa-facebook-f"></i></a>
@@ -216,9 +224,49 @@
               <a href="http://texty.org.ua/" target="_blank"><img src="img/logo1.png" alt="texty.org.ua"></a>
             </div>
           </section>
-      </footer>
-     
+      </footer>     
     </main>
+    <style>
+      #button {
+          width: 100%; /* 100% of parent container*/
+          margin:auto;
+          line-height: 1.6;
+          margin-top: 5em;
+          margin-bottom: 5em;
+      }
+  
+      #button > h3 {
+          font-weight:800;
+          text-align: center;
+          font-size:18px;
+          margin-bottom: 1em;
+          line-height: 1.6;
+      }
+  
+      #button > #button-container {
+          width:100%;
+          display:flex;
+          font-family: Verdana, Arial, sans-serif;
+          font-style: normal;
+      }
+  
+      #button > #button-container > #support-us {
+          display: block;
+          color: #383e47;
+          text-decoration: none;
+          font-weight:700;
+  
+          width:auto;
+          width:max-content;
+          background-color: #ffc423;
+          padding: 10px;
+          outline: none;
+          border:none;
+          font-size:18px;
+          margin:auto;
+          cursor:pointer;
+      }
+  </style>
 
     <script src="libs/leaflet.js "></script>
     <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.35.1/mapbox-gl.js"></script>

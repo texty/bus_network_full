@@ -9,6 +9,9 @@ Promise.all([
   Vue.config.devtools = true;
 
 
+console.log(stops);
+console.log(international_routes_stops);
+
   var backgroundRouteColor = "#b7acac";
   var selectedRouteColor = "#EB00FF";
 
@@ -405,7 +408,10 @@ var gl = L.mapboxGL({
           {{ item.stop_name }}
         </span>
         <span class="stop_name">
-          {{ direction ? item.arrival_direct : item.arrival_return }}
+          {{ direction 
+            ? item.departure_direct != "" ? item.departure_direct : item.arrival_direct
+            : item.departure_return != "" ? item.departure_return : item.arrival_return
+          }}
         </span>
       </p>
     </div>

@@ -18,14 +18,22 @@
     "url": "https://github.com/texty/bus_network_full/issues"
   },
   "homepage": "https://github.com/texty/bus_network_full#readme",
-  
   "devDependencies": {
     "node-sass": "^4.11.0",
     "nodemon": "^1.18.10"
   },
-
   "nodemonConfig": {
-    "ignore": ["data/*", "js/*", "data/*", "libs/*", "node_modules/*"],
+    "ignore": [
+      "data/*",
+      "js/*",
+      "data/*",
+      "libs/*",
+      "node_modules/*"
+    ],
     "delay": "500"
+  },
+  "dependencies": {
+    "autoprefixer": "^9.5.1",
+    "postcss-cli": "^6.1.2"
   }
 }
