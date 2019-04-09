@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx sass css/main.scss css/main.css",
+    "build": "npx sass css/main.scss css/main.css && npx postcss css/main.css -o css/main.css -u autoprefixer",
     "watch": "npx nodemon -e css -x \"npm run build\""
   },
   "repository": {
@@ -19,8 +19,10 @@
   },
   "homepage": "https://github.com/texty/bus_network_full#readme",
   "devDependencies": {
-    "node-sass": "^4.11.0",
-    "nodemon": "^1.18.10"
+    "autoprefixer": "^9.5.1",
+    "nodemon": "^1.18.10",
+    "postcss-cli": "^6.1.2",
+    "sass": "^1.18.0"
   },
   "nodemonConfig": {
     "ignore": [
@@ -32,8 +34,5 @@
     ],
     "delay": "500"
   },
-  "dependencies": {
-    "autoprefixer": "^9.5.1",
-    "postcss-cli": "^6.1.2"
-  }
+  "dependencies": {}
 }

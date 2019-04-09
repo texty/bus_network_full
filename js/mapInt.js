@@ -117,11 +117,9 @@ Promise.all([
     }).addTo(map);
   
     markers.on('click', function(d){
-      // console.log(d.target.properties);
       var a = d.sourceTarget.feature.properties.cityCode;
       var res = data.filter(d => d.start.cityCode == a)
   
-      console.log(nestedStops.get(a));
       storeInt.commit('change', a);
   /*       store.commit('redrawMap');
   */      // overlay.redraw();
@@ -297,7 +295,6 @@ Promise.all([
       }
     },
     mounted() {
-      console.log(storeInt.getters.routesToDisplay);
     },
     // watch: {
     //   selectedStop: function(val) {
