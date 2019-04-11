@@ -410,7 +410,7 @@ Vue.use(VueTippy);
         <span class="stop_name">
           {{ direction 
             ? item.arrival_direct != "" ? item.arrival_direct : item.departure_direct
-            : item.arrival_direct != "" ? item.arrival_direct : item.departure_direct
+            : item.arrival_return != "" ? item.arrival_return : item.departure_return
           }}
         </span>
       </p>
